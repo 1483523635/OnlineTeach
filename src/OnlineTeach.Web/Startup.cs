@@ -27,7 +27,7 @@ namespace OnlineTeach.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<ApplicationDbContext>(options =>
-                options.UseInMemoryDatabase("Identity" + Guid.NewGuid()));
+                options.UseInMemoryDatabase("Identity"));
                 //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options=> {
@@ -64,6 +64,7 @@ namespace OnlineTeach.Web
 
             });
             services.AddMvc();
+            services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("AuthMessageSenderOptions"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

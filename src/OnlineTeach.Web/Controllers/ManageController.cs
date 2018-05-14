@@ -102,7 +102,7 @@ namespace OnlineTeach.Web.Controllers
                 }
             }
 
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "你的个人信息已经更改！";
             return RedirectToAction(nameof(Index));
         }
 
@@ -126,7 +126,7 @@ namespace OnlineTeach.Web.Controllers
             var email = user.Email;
             await _emailSender.SendEmailConfirmationAsync(email, callbackUrl);
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "邮箱验证已经发送，请检查你的邮箱。";
             return RedirectToAction(nameof(Index));
         }
 
@@ -173,7 +173,7 @@ namespace OnlineTeach.Web.Controllers
 
             await _signInManager.SignInAsync(user, isPersistent: false);
             _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            StatusMessage = "你的密码已更新。";
 
             return RedirectToAction(nameof(ChangePassword));
         }
@@ -221,7 +221,7 @@ namespace OnlineTeach.Web.Controllers
             }
 
             await _signInManager.SignInAsync(user, isPersistent: false);
-            StatusMessage = "Your password has been set.";
+            StatusMessage = "你的密码已经重置。";
 
             return RedirectToAction(nameof(SetPassword));
         }

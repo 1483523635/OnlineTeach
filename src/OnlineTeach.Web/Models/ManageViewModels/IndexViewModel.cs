@@ -8,16 +8,17 @@ namespace OnlineTeach.Web.Models.ManageViewModels
 {
     public class IndexViewModel
     {
+        [Display(Name ="用户名")]
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
-
-        [Required]
+        [Display(Name ="邮箱")]
+        [Required(ErrorMessage ="{0}不能为空")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Phone]
-        [Display(Name = "Phone number")]
+        [Display(Name = "手机号")]
         public string PhoneNumber { get; set; }
 
         public string StatusMessage { get; set; }
