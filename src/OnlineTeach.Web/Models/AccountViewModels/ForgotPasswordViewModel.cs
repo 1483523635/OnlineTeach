@@ -8,8 +8,9 @@ namespace OnlineTeach.Web.Models.AccountViewModels
 {
     public class ForgotPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="{0}不能为空")]
         [EmailAddress]
+        [Display(Name ="邮箱地址")]
         public string Email { get; set; }
     }
 }

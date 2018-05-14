@@ -78,7 +78,7 @@ namespace OnlineTeach.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "账户名或密码错误。");
                     return View(model);
                 }
             }
