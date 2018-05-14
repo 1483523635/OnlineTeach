@@ -64,6 +64,11 @@ namespace OnlineTeach.Web
 
             });
             services.AddMvc();
+            //配置只有管理员账户
+            services.AddAuthorization(options=> {
+                options.AddPolicy("admin",policy=>policy.RequireUserName("1483523635@qq.com"));
+            });
+           
             services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("AuthMessageSenderOptions"));
         }
 
