@@ -21,6 +21,7 @@ namespace OnlineTeach.Web.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
@@ -28,13 +29,16 @@ namespace OnlineTeach.Web.Controllers
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            RoleManager<ApplicationRole> roleManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            SeedRole().GetAwaiter().GetResult();
         }
 
         [TempData]
@@ -225,7 +229,7 @@ namespace OnlineTeach.Web.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-
+                    await _userManager.AddToRoleAsync(user, "student");
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
@@ -456,6 +460,22 @@ namespace OnlineTeach.Web.Controllers
             else
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+        }
+
+        private async Task SeedRole()
+        {
+            if (!await _roleManager.RoleExistsAsync("admin"))
+            {
+                await _roleManager.CreateAsync(new ApplicationRole("admin"));
+            }
+            if (!await _roleManager.RoleExistsAsync("teacher"))
+            {
+                await _roleManager.CreateAsync(new ApplicationRole("teacher"));
+            }
+            if ((!await _roleManager.RoleExistsAsync("student")))
+            {
+                await _roleManager.CreateAsync(new ApplicationRole("student"));
             }
         }
 

@@ -30,7 +30,7 @@ namespace OnlineTeach.Web
                 options.UseInMemoryDatabase("Identity"));
                 //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options=> {
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options=> {
                 options.Password.RequireDigit = false;
                 options.Password.RequiredUniqueChars = 6;
                 options.Password.RequireLowercase = true;
