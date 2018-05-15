@@ -25,7 +25,7 @@ namespace OnlineTeach.Web.Controllers
                 {
                     if (!IsInited)
                     {
-                        AutoMapper.Mapper.Initialize(config => config.CreateMap<TeacherApply, TeacherApplyViewModel>().ConstructUsing(c=>new TeacherApplyViewModel() { Id=c.key}));
+                        AutoMapper.Mapper.Initialize(config => config.CreateMap<TeacherApply, TeacherApplyViewModel>().ConstructUsing(c => new TeacherApplyViewModel() { Id = c.key }));
                         IsInited = true;
                     }
                 }
@@ -39,17 +39,24 @@ namespace OnlineTeach.Web.Controllers
         {
             var list = _teacherManager.GetAllApplys();
             var model = AutoMapper.Mapper.Map<List<TeacherApplyViewModel>>(list);
+            ViewBag.StatusMessage = StatusMessage;
             return View(model);
         }
 
-        //public IActionResult Pass(long Id)
-        //{
-
-
-        //}
-        //public IActionResult Deny(long Id)
-        //{
-
-        //}
+        public async Task<IActionResult> Pass(long id)
+        {
+            if (id <= 0)
+                throw new ApplicationException("参数ID不正确！");
+            await _teacherManager.Pass(id);
+            StatusMessage = "已通过！";
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Deny(long id)
+        {
+            if (id <= 0) throw new ApplicationException("参数ID不正确");
+            _teacherManager.Deny(id);
+            StatusMessage = "已拒绝！";
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

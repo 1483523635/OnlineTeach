@@ -28,13 +28,14 @@ namespace OnlineTeach.Web.Domains.Teachers
         {
             _teacherRepository.Add(new TeacherApply() { Name = name, RealName = realName, School = school, ApplyReason = applyReason, ApplyStatus = 1 });
         }
-        public async Task AddToTeacherRoleAsync(ApplicationUser applicationUser)
+        public async Task AddToTeacherRoleAsync(string applicationUserName)
         {
-            var user = await _userManager.FindByNameAsync(applicationUser.UserName);
+            var user = await _userManager.FindByNameAsync(applicationUserName);
             if (user == null)
                 throw new Exception("用户不存在！");
             if (!await _userManager.IsInRoleAsync(user, "teacher"))
-                await _userManager.AddToRoleAsync(applicationUser, "teacher");
+                await _userManager.AddToRoleAsync(user, "teacher");
+
         }
         public IEnumerable<TeacherApply> GetAllApplys()
         {
@@ -43,6 +44,30 @@ namespace OnlineTeach.Web.Domains.Teachers
         public TeacherApply GetByKey(long key)
         {
             return _teacherRepository.GetByKey(key);
+        }
+        public async Task Pass(long id)
+        {
+            var user = GetByKey(id);
+            await AddToTeacherRoleAsync(user.Name);
+            UpdateApplyStatus(id, 3);
+        }
+        public void Deny(long id)
+        {
+            var user = GetByKey(id);
+            UpdateApplyStatus(id, 2);
+            UpdateApplyConut(id);
+        }
+        private void UpdateApplyStatus(long key, int status)
+        {
+            var apply = GetByKey(key);
+            apply.ApplyStatus = status;
+            _teacherRepository.Update(key, apply);
+        }
+        private void UpdateApplyConut(long key)
+        {
+            var apply = GetByKey(key);
+            apply.ApplyCount += 1;
+            _teacherRepository.Update(key, apply);
         }
     }
 }

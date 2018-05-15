@@ -2,10 +2,13 @@
 @using OnlineTeach.Web.Views.Adult
 @{
     ViewData["Title"] = "教师申请审核";
-    Layout = "~/Views/Adult/_Layout.cshtml";
+
     ViewData.AddActivePage(AdultNavPages.Index);
+    var StatusMessage = ViewBag.StatusMessage as string;
+
 }
 
+@Html.Partial("_StatusMessage", StatusMessage);
 
 <table class="table">
     <thead>
@@ -60,8 +63,8 @@
                     @Html.DisplayFor(modelItem => item.ApplyStatus)
                 </td>
                 <td>
-                    <button asp-action="Pass" asp-route-id="@item.Id">通过</button> |
-                    <button asp-action="Deny" asp-route-id="@item.Id">拒绝</button>
+                    <a asp-action="Pass" asp-route-id="@item.Id">通过</a> |
+                    <a asp-action="Deny" asp-route-id="@item.Id">拒绝</a>
                 </td>
             </tr>
         }
