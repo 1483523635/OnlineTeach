@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using OnlineTeach.Web.Models.ManageViewModels;
 using OnlineTeach.Web.Models.AdultViewModels;
+using OnlineTeach.Web.Data.Cource;
 
 namespace OnlineTeach.Web.Data
 {
@@ -20,7 +21,7 @@ namespace OnlineTeach.Web.Data
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<TeacherApply> TeacherApplies { get; set; }
-        public DbSet<OnlineTeach.Web.Models.ManageViewModels.ChangeToTeacherViewModel> ChangeToTeacherViewModel { get; set; }
-        public DbSet<OnlineTeach.Web.Models.AdultViewModels.TeacherApplyViewModel> TeacherApplyViewModel { get; set; }
+        public DbSet<CourceItem> CourceItems { get; set; }
+        public DbSet<CourceOutLine> courceOutLines { get; set; }
     }
 }
