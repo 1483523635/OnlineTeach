@@ -4,6 +4,7 @@ using OnlineTeach.Web.Domains.AggrationRoot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace OnlineTeach.Web.Domains.Repositories
@@ -43,6 +44,11 @@ namespace OnlineTeach.Web.Domains.Repositories
         public IEnumerable<TEntity> GetList()
         {
             return _context.Set<TEntity>().ToList();
+        }
+
+        public IEnumerable<TEntity> GetList(Expression<Func<TEntity, bool>> expression)
+        {
+            return _context.Set<TEntity>().Where(expression).ToList();
         }
 
         public void Update(Tkey key, TEntity entity)
