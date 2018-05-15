@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using OnlineTeach.Web.Data;
 using OnlineTeach.Web.Models;
 using OnlineTeach.Web.Services;
+using OnlineTeach.Web.Domains.Repositories;
+using OnlineTeach.Web.Data.Adult;
+using OnlineTeach.Web.Domains.Teachers;
 
 namespace OnlineTeach.Web
 {
@@ -37,7 +40,7 @@ namespace OnlineTeach.Web
                 options.UseInMemoryDatabase("Identity");
                 //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
-           
+
 
             services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
             {
@@ -81,7 +84,9 @@ namespace OnlineTeach.Web
             {
                 options.AddPolicy("admin", policy => policy.RequireUserName("1483523635@qq.com"));
             });
-
+            //仓储服务泛型注入
+            services.AddTransient(typeof(IRepository<,>), typeof(Repository<,>));
+            services.AddScoped<TeachersManager, TeachersManager>();
             services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("AuthMessageSenderOptions"));
         }
 

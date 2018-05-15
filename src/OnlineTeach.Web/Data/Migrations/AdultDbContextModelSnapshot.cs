@@ -22,7 +22,7 @@ namespace OnlineTeach.Web.Data.Migrations
 
             modelBuilder.Entity("OnlineTeach.Web.Data.Adult.TeacherApply", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("Key")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("ApplyCount");
@@ -39,7 +39,7 @@ namespace OnlineTeach.Web.Data.Migrations
 
                     b.Property<Guid>("userId");
 
-                    b.HasKey("Id");
+                    b.HasKey("Key");
 
                     b.ToTable("TeacherApplies");
                 });

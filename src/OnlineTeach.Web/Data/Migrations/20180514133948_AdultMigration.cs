@@ -13,7 +13,7 @@ namespace OnlineTeach.Web.Data.Migrations
                 name: "TeacherApplies",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Key = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ApplyCount = table.Column<int>(nullable: false),
                     ApplyReason = table.Column<string>(nullable: true),
@@ -25,7 +25,7 @@ namespace OnlineTeach.Web.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TeacherApplies", x => x.Id);
+                    table.PrimaryKey("PK_TeacherApplies", x => x.Key);
                 });
         }
 
