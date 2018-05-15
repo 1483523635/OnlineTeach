@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domains\Admin\" />
     <Folder Include="Models\OnlineTeachModels\" />
   </ItemGroup>
 

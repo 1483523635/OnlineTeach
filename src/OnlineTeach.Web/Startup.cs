@@ -14,6 +14,8 @@ using OnlineTeach.Web.Services;
 using OnlineTeach.Web.Domains.Repositories;
 using OnlineTeach.Web.Data.Adult;
 using OnlineTeach.Web.Domains.Teachers;
+using OnlineTeach.Web.Domains.Cources;
+using OnlineTeach.Web.StartupExt;
 
 namespace OnlineTeach.Web
 {
@@ -87,6 +89,8 @@ namespace OnlineTeach.Web
             //仓储服务泛型注入
             services.AddTransient(typeof(IRepository<,>), typeof(Repository<,>));
             services.AddScoped<TeachersManager, TeachersManager>();
+            services.AddScoped<CourcesManager, CourcesManager>();
+            services.MapperInit();
             services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("AuthMessageSenderOptions"));
         }
 
