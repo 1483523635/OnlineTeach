@@ -1,5 +1,6 @@
 ﻿@using OnlineTeach.Web.Views.Manage
 @inject SignInManager<ApplicationUser> SignInManager
+@inject RoleManager<ApplicationRole> RoleManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
@@ -7,10 +8,14 @@
 <ul class="nav nav-pills nav-stacked">
     <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a asp-action="Index">个人信息</a></li>
     <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a asp-action="ChangePassword">密码</a></li>
-    @*@if (hasExternalLogins)
+    @if (!User.IsInRole("teacher"))
     {
-        <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a asp-action="ExternalLogins">External logins</a></li>
+        <li class="@ManageNavPages.ChangeToTeacherClass(ViewContext)"><a asp-action="ChangeToTeacher">我是老师</a></li>
     }
-    <li class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)"><a asp-action="TwoFactorAuthentication">Two-factor authentication</a></li>*@
+    @*@if (hasExternalLogins)
+        {
+            <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a asp-action="ExternalLogins">External logins</a></li>
+        }
+        <li class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)"><a asp-action="TwoFactorAuthentication">Two-factor authentication</a></li>*@
 </ul>
 

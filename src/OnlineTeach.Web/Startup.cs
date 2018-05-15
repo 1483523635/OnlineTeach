@@ -26,11 +26,21 @@ namespace OnlineTeach.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<ApplicationDbContext>(options =>
-                options.UseInMemoryDatabase("Identity"));
-                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, ApplicationRole>(options=> {
+            services.AddDbContext<AdultDbContext>(options =>
+            {
+                options.UseInMemoryDatabase("adult");
+                //options.UseSqlServer(Configuration.GetConnectionString("AdultDbStr"));
+            });
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseInMemoryDatabase("Identity");
+                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
+           
+
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+            {
                 options.Password.RequireDigit = false;
                 options.Password.RequiredUniqueChars = 6;
                 options.Password.RequireLowercase = true;
@@ -52,7 +62,9 @@ namespace OnlineTeach.Web
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-            services.ConfigureApplicationCookie(config=> {
+
+            services.ConfigureApplicationCookie(config =>
+            {
                 //config.Cookie.Domain = "*.naisi.com";
                 config.Cookie.HttpOnly = true;
                 config.Cookie.Name = "naisiCookie";
@@ -64,11 +76,12 @@ namespace OnlineTeach.Web
 
             });
             services.AddMvc();
-            //配置只有管理员账户
-            services.AddAuthorization(options=> {
-                options.AddPolicy("admin",policy=>policy.RequireUserName("1483523635@qq.com"));
+            //配置管理员账户
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("admin", policy => policy.RequireUserName("1483523635@qq.com"));
             });
-           
+
             services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("AuthMessageSenderOptions"));
         }
 

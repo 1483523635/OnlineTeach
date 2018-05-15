@@ -491,6 +491,22 @@ namespace OnlineTeach.Web.Controllers
             return View(nameof(ShowRecoveryCodes), model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ChangeToTeacher()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+            if (User.IsInRole("teacher"))
+            {
+                throw new ApplicationException($"用户:{_userManager.GetUserName(User)},已经是老师了");
+            }
+            var model = new ChangeToTeacherViewModel() { StatusMessage = StatusMessage };
+            return View(model);
+        }
+
         #region Helpers
 
         private void AddErrors(IdentityResult result)
