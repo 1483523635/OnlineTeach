@@ -25,7 +25,7 @@ namespace OnlineTeach.Web.Controllers
                 {
                     if (!IsInited)
                     {
-                        AutoMapper.Mapper.Initialize(config => config.CreateMap<TeacherApply, TeacherApplyViewModel>());
+                        AutoMapper.Mapper.Initialize(config => config.CreateMap<TeacherApply, TeacherApplyViewModel>().ConstructUsing(c=>new TeacherApplyViewModel() { Id=c.key}));
                         IsInited = true;
                     }
                 }
