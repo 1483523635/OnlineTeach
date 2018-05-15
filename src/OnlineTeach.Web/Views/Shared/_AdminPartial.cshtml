@@ -1,0 +1,6 @@
+﻿
+
+@if (User.IsInRole("admin"))
+{
+    <li><a asp-area="" asp-controller="Adult" asp-action="Index">管理页面</a></li>
+}

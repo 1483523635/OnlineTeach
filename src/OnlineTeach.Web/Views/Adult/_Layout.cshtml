@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "后台管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>后台管理</h2>
+<div>
+    <h4>审核面板</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            @await Html.PartialAsync("_AdultNav")
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}
+
+

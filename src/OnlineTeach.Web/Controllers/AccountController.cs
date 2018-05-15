@@ -229,6 +229,10 @@ namespace OnlineTeach.Web.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    if (string.Equals(user.Email, "1483523635@qq.com"))
+                    {
+                        await _userManager.AddToRoleAsync(user, "admin");
+                    }
                     await _userManager.AddToRoleAsync(user, "student");
                     //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     //var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);

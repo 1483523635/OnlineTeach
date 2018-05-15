@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OnlineTeach.Web.Models.ManageViewModels;
+using OnlineTeach.Web.Models.AdultViewModels;
 
 namespace OnlineTeach.Web.Data
 {
@@ -20,5 +21,6 @@ namespace OnlineTeach.Web.Data
         }
         public DbSet<TeacherApply> TeacherApplies { get; set; }
         public DbSet<OnlineTeach.Web.Models.ManageViewModels.ChangeToTeacherViewModel> ChangeToTeacherViewModel { get; set; }
+        public DbSet<OnlineTeach.Web.Models.AdultViewModels.TeacherApplyViewModel> TeacherApplyViewModel { get; set; }
     }
 }

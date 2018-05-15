@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineTeach.Web.Data.Adult
 {
-    public class TeacherApply:AggrationRoot<long>
+    public class TeacherApply : AggrationRoot<long>
     {
         public string Name { get; set; }
         public string RealName { get; set; }
@@ -15,5 +15,8 @@ namespace OnlineTeach.Web.Data.Adult
         public string ApplyReason { get; set; }
         public DateTime ApplyTime { get; set; } = DateTime.Now;
         public int ApplyCount { get; set; } = 0;
+        public int ApplyStatus { get; set; } = 0;
     }
+    
+
 }

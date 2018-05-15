@@ -26,7 +26,7 @@ namespace OnlineTeach.Web.Domains.Teachers
         }
         public void ApplyToTeacherRole(string name, string realName, string school, string applyReason)
         {
-            _teacherRepository.Add(new TeacherApply() { Name = name, RealName = realName, School = school, ApplyReason = applyReason });
+            _teacherRepository.Add(new TeacherApply() { Name = name, RealName = realName, School = school, ApplyReason = applyReason ,ApplyStatus=1});
         }
         public async Task AddToTeacherRoleAsync(ApplicationUser applicationUser)
         {
@@ -35,6 +35,10 @@ namespace OnlineTeach.Web.Domains.Teachers
                 throw new Exception("用户不存在！");
             if (!await _userManager.IsInRoleAsync(user, "teacher"))
                 await _userManager.AddToRoleAsync(applicationUser, "teacher");
+        }
+        public IEnumerable<TeacherApply> GetAllApplys()
+        {
+            return _teacherRepository.GetList();
         }
 
     }
