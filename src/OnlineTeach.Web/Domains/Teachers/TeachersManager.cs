@@ -26,7 +26,7 @@ namespace OnlineTeach.Web.Domains.Teachers
         }
         public void ApplyToTeacherRole(string name, string realName, string school, string applyReason)
         {
-            _teacherRepository.Add(new TeacherApply() { Name = name, RealName = realName, School = school, ApplyReason = applyReason ,ApplyStatus=1});
+            _teacherRepository.Add(new TeacherApply() { Name = name, RealName = realName, School = school, ApplyReason = applyReason, ApplyStatus = 1 });
         }
         public async Task AddToTeacherRoleAsync(ApplicationUser applicationUser)
         {
@@ -38,8 +38,11 @@ namespace OnlineTeach.Web.Domains.Teachers
         }
         public IEnumerable<TeacherApply> GetAllApplys()
         {
-            return _teacherRepository.GetList();
+            return _teacherRepository.GetList(t => t.ApplyStatus == 1);
         }
-
+        public TeacherApply GetByKey(long key)
+        {
+            return _teacherRepository.GetByKey(key);
+        }
     }
 }
