@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using OnlineTeach.Web.Data;
-using OnlineTeach.Web.Models.AdultViewModels;
+using OnlineTeach.Web.Data.Cource;
 using System;
 
 namespace OnlineTeach.Web.Data.Migrations
@@ -45,6 +45,61 @@ namespace OnlineTeach.Web.Data.Migrations
                     b.ToTable("TeacherApplies");
                 });
 
+            modelBuilder.Entity("OnlineTeach.Web.Data.Cource.CourceItem", b =>
+                {
+                    b.Property<long>("key")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BookCount");
+
+                    b.Property<string>("Content");
+
+                    b.Property<DateTime>("EndTime");
+
+                    b.Property<int>("Grade");
+
+                    b.Property<string>("ImageUrl");
+
+                    b.Property<string>("Name");
+
+                    b.Property<double>("Price");
+
+                    b.Property<DateTime>("StartTime");
+
+                    b.HasKey("key");
+
+                    b.ToTable("CourceItems");
+                });
+
+            modelBuilder.Entity("OnlineTeach.Web.Data.Cource.CourceOutLine", b =>
+                {
+                    b.Property<long>("key")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<long>("CourceId");
+
+                    b.Property<int>("LearnStatu");
+
+                    b.Property<string>("OUtlineName");
+
+                    b.Property<DateTime>("StartDate");
+
+                    b.Property<string>("TeacherName");
+
+                    b.HasKey("key");
+
+                    b.HasIndex("CourceId");
+
+                    b.ToTable("courceOutLines");
+                });
+
+            modelBuilder.Entity("OnlineTeach.Web.Data.Cource.CourceOutLine", b =>
+                {
+                    b.HasOne("OnlineTeach.Web.Data.Cource.CourceItem", "CourceItem")
+                        .WithMany("CourceOutLines")
+                        .HasForeignKey("CourceId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
 #pragma warning restore 612, 618
         }
     }

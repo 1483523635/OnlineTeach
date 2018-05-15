@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using OnlineTeach.Web.Data;
-using OnlineTeach.Web.Models.AdultViewModels;
+using OnlineTeach.Web.Data.Cource;
 using System;
 
 namespace OnlineTeach.Web.Data.Migrations
 {
     [DbContext(typeof(AdultDbContext))]
-    [Migration("20180515082406_AdultMigration")]
+    [Migration("20180515121013_AdultMigration")]
     partial class AdultMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,50 +46,60 @@ namespace OnlineTeach.Web.Data.Migrations
                     b.ToTable("TeacherApplies");
                 });
 
-            modelBuilder.Entity("OnlineTeach.Web.Models.AdultViewModels.TeacherApplyViewModel", b =>
+            modelBuilder.Entity("OnlineTeach.Web.Data.Cource.CourceItem", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("key")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ApplyCount");
+                    b.Property<int>("BookCount");
 
-                    b.Property<string>("ApplyReason");
+                    b.Property<string>("Content");
 
-                    b.Property<int>("ApplyStatus");
+                    b.Property<DateTime>("EndTime");
 
-                    b.Property<DateTime>("ApplyTime");
+                    b.Property<int>("Grade");
+
+                    b.Property<string>("ImageUrl");
 
                     b.Property<string>("Name");
 
-                    b.Property<string>("RealName");
+                    b.Property<double>("Price");
 
-                    b.Property<string>("School");
+                    b.Property<DateTime>("StartTime");
 
-                    b.HasKey("Id");
+                    b.HasKey("key");
 
-                    b.ToTable("TeacherApplyViewModel");
+                    b.ToTable("CourceItems");
                 });
 
-            modelBuilder.Entity("OnlineTeach.Web.Models.ManageViewModels.ChangeToTeacherViewModel", b =>
+            modelBuilder.Entity("OnlineTeach.Web.Data.Cource.CourceOutLine", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("key")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplyReason")
-                        .IsRequired()
-                        .HasMaxLength(100);
+                    b.Property<long>("CourceId");
 
-                    b.Property<string>("RealName")
-                        .IsRequired();
+                    b.Property<int>("LearnStatu");
 
-                    b.Property<string>("School")
-                        .IsRequired();
+                    b.Property<string>("OUtlineName");
 
-                    b.Property<string>("StatusMessage");
+                    b.Property<DateTime>("StartDate");
 
-                    b.HasKey("Id");
+                    b.Property<string>("TeacherName");
 
-                    b.ToTable("ChangeToTeacherViewModel");
+                    b.HasKey("key");
+
+                    b.HasIndex("CourceId");
+
+                    b.ToTable("courceOutLines");
+                });
+
+            modelBuilder.Entity("OnlineTeach.Web.Data.Cource.CourceOutLine", b =>
+                {
+                    b.HasOne("OnlineTeach.Web.Data.Cource.CourceItem", "CourceItem")
+                        .WithMany("CourceOutLines")
+                        .HasForeignKey("CourceId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
