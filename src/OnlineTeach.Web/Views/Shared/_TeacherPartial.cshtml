@@ -1,0 +1,4 @@
+﻿@if (User.IsInRole("teacher") || User.IsInRole("admin"))
+{
+    <li><a asp-area="" asp-controller="Cource" asp-action="Index">我的课程管理</a></li>
+}
