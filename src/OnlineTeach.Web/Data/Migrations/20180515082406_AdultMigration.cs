@@ -9,30 +9,37 @@ namespace OnlineTeach.Web.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+           
+
             migrationBuilder.CreateTable(
                 name: "TeacherApplies",
                 columns: table => new
                 {
-                    Key = table.Column<long>(nullable: false)
+                    key = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ApplyCount = table.Column<int>(nullable: false),
                     ApplyReason = table.Column<string>(nullable: true),
+                    ApplyStatus = table.Column<int>(nullable: false),
                     ApplyTime = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     RealName = table.Column<string>(nullable: true),
-                    School = table.Column<string>(nullable: true),
-                    userId = table.Column<Guid>(nullable: false)
+                    School = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TeacherApplies", x => x.Key);
+                    table.PrimaryKey("PK_TeacherApplies", x => x.key);
                 });
+
+           
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+          
             migrationBuilder.DropTable(
                 name: "TeacherApplies");
+
+           
         }
     }
 }

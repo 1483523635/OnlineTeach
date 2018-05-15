@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using OnlineTeach.Web.Data;
+using OnlineTeach.Web.Models.AdultViewModels;
 using System;
 
 namespace OnlineTeach.Web.Data.Migrations
@@ -22,12 +23,14 @@ namespace OnlineTeach.Web.Data.Migrations
 
             modelBuilder.Entity("OnlineTeach.Web.Data.Adult.TeacherApply", b =>
                 {
-                    b.Property<long>("Key")
+                    b.Property<long>("key")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("ApplyCount");
 
                     b.Property<string>("ApplyReason");
+
+                    b.Property<int>("ApplyStatus");
 
                     b.Property<DateTime>("ApplyTime");
 
@@ -37,12 +40,11 @@ namespace OnlineTeach.Web.Data.Migrations
 
                     b.Property<string>("School");
 
-                    b.Property<Guid>("userId");
-
-                    b.HasKey("Key");
+                    b.HasKey("key");
 
                     b.ToTable("TeacherApplies");
                 });
+
 #pragma warning restore 612, 618
         }
     }
