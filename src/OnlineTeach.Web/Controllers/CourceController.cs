@@ -20,11 +20,12 @@ namespace OnlineTeach.Web.Controllers
         }
 
         [TempData]
-        public string StatusMessage { get; set; }
+        public string StatusMessage { get; set; } = string.Empty;
         public IActionResult Index()
         {
             var list = _courceManager.GetAllCourcesByTeacherName(User.Identity.Name);
             var model = AutoMapper.Mapper.Map<IEnumerable<CourceItemCreateViewModel>>(list);
+            ViewData["StatusMessage"] = StatusMessage;
             return View(model);
         }
         [HttpGet]
@@ -45,6 +46,26 @@ namespace OnlineTeach.Web.Controllers
                 model.ImageUrl, model.StartTime, model.EndTime, model.Grade, model.Content, model.Price);
             StatusMessage = "创建成功！";
             return RedirectToAction(nameof(Create));
+        }
+
+        [HttpGet]
+        public IActionResult Edit(long key)
+        {
+            if (key <= 0)
+                throw new ApplicationException($"{nameof(key)}不能小于1");
+            var cource = _courceManager.GetByKey((long)key);
+            var model = AutoMapper.Mapper.Map<CourceItemCreateViewModel>(cource);
+            model.StateMessage = StatusMessage;
+            return View("Create", model);
+        }
+        [HttpGet]
+        public IActionResult Delete(long key)
+        {
+            if (key <= 0)
+                throw new ApplicationException($"{nameof(key)}不能小于1");
+            _courceManager.Delete(key);
+            StatusMessage = "删除成功！";
+            return RedirectToAction(nameof(Index));
         }
     }
 }
