@@ -43,7 +43,7 @@ namespace OnlineTeach.Web.Domains.Cources
             cource.State = CourceState.Deny;
             _courceManagerRepositoty.SaveChanges();
         }
-        private CourceItem GetByKey(long key)
+        public CourceItem GetByKey(long key)
         {
             return _courceManagerRepositoty.GetByKey(key);
         }
