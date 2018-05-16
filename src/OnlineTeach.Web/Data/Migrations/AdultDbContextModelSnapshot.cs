@@ -66,6 +66,10 @@ namespace OnlineTeach.Web.Data.Migrations
 
                     b.Property<DateTime>("StartTime");
 
+                    b.Property<int>("State");
+
+                    b.Property<string>("TeacherName");
+
                     b.HasKey("key");
 
                     b.ToTable("CourceItems");

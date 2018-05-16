@@ -17,7 +17,9 @@ namespace OnlineTeach.Web.Data.Cource
         public GradeType Grade { get; set; }
         public string Content { get; set; }
         public double Price { get; set; }
+        public CourceState State { get; set; }
         public List<CourceOutLine> CourceOutLines { get; set; }
+        public string TeacherName { get; set; }
     }
     public enum GradeType
     {
@@ -47,5 +49,14 @@ namespace OnlineTeach.Web.Data.Cource
         Eleven,
         [Display(Name = "高三")]
         twelve
+    }
+    public enum CourceState
+    {
+        [Display(Name = "未审核")]
+        UnAdult = 1,
+        [Display(Name = "通过")]
+        Pass = 2,
+        [Display(Name = "拒绝")]
+        Deny = 3
     }
 }

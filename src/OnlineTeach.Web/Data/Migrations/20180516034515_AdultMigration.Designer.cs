@@ -12,7 +12,7 @@ using System;
 namespace OnlineTeach.Web.Data.Migrations
 {
     [DbContext(typeof(AdultDbContext))]
-    [Migration("20180515121013_AdultMigration")]
+    [Migration("20180516034515_AdultMigration")]
     partial class AdultMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,6 +66,10 @@ namespace OnlineTeach.Web.Data.Migrations
                     b.Property<double>("Price");
 
                     b.Property<DateTime>("StartTime");
+
+                    b.Property<int>("State");
+
+                    b.Property<string>("TeacherName");
 
                     b.HasKey("key");
 

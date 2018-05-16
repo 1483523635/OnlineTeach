@@ -22,7 +22,9 @@ namespace OnlineTeach.Web.Data.Migrations
                     ImageUrl = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Price = table.Column<double>(nullable: false),
-                    StartTime = table.Column<DateTime>(nullable: false)
+                    StartTime = table.Column<DateTime>(nullable: false),
+                    State = table.Column<int>(nullable: false),
+                    TeacherName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
