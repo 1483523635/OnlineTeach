@@ -1,0 +1,49 @@
+﻿@model IEnumerable<OnlineTeach.Web.Models.AdultViewModels.CourceItemViewModel>
+@using OnlineTeach.Web.Views.Adult
+
+@{
+    ViewData["Title"] = "课程审核";
+    Layout = "~/Views/Adult/_Layout.cshtml";
+    ViewData.AddActivePage(AdultNavPages.Cource);
+
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@Html.Partial("_StatusMessage", ViewData["StatusMessage"] as string)
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeacherName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeacherName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    <a asp-action="CourcePass" asp-route-key="@item.Key">通过</a> |
+                    <a asp-action="CourceDeny" asp-route-key="@item.Key">拒绝</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

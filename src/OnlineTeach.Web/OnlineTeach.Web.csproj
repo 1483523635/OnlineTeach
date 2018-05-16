@@ -5,6 +5,13 @@
     <UserSecretsId>aspnet-OnlineTeach.Web-1FED5F5D-F10B-488B-8E6C-4573BC7D45A3</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Models\OnlineTeachModels\**" />
+    <Content Remove="Models\OnlineTeachModels\**" />
+    <EmbeddedResource Remove="Models\OnlineTeachModels\**" />
+    <None Remove="Models\OnlineTeachModels\**" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
@@ -20,10 +27,6 @@
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.2" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\OnlineTeachModels\" />
   </ItemGroup>
 
 </Project>

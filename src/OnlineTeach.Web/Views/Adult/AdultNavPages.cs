@@ -11,8 +11,9 @@ namespace OnlineTeach.Web.Views.Adult
     {
         public static string ActivePageKey => "ActivePage";
         public static string Index => "Index";
+        public static string Cource => "Cource";
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
-
+        public static string CourceNavClass(ViewContext viewContext) => PageNavClass(viewContext, Cource);
         private static string PageNavClass(ViewContext viewContext, string page)
         {
             var activePage = viewContext.ViewData["ActivePage"] as string;

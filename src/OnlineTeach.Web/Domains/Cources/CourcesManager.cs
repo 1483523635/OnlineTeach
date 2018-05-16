@@ -33,7 +33,7 @@ namespace OnlineTeach.Web.Domains.Cources
         }
         public void Pass(long Key)
         {
-            var cource = GetByKey(key);
+            var cource = GetByKey(Key);
             cource.State = CourceState.Pass;
             _courceManagerRepositoty.SaveChanges();
         }

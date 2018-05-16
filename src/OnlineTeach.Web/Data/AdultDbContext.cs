@@ -23,5 +23,6 @@ namespace OnlineTeach.Web.Data
         public DbSet<TeacherApply> TeacherApplies { get; set; }
         public DbSet<CourceItem> CourceItems { get; set; }
         public DbSet<CourceOutLine> courceOutLines { get; set; }
+        public DbSet<OnlineTeach.Web.Models.AdultViewModels.CourceItemViewModel> CourceItemViewModel { get; set; }
     }
 }
