@@ -1,0 +1,10 @@
+﻿@model List<OnlineTeach.Web.Models.CourceViewModels.CourceItemDisplayViewModel>
+@for (int i = 0; i < Model.Count(); i += 4)
+{
+    @Html.Raw("<div class='row' style='margin-top:30px;'>")
+    for (int j = i; j < (i + 4 > Model.Count() ? Model.Count() : i + 4); j++)
+    {
+        @Html.Partial("_CourceDisplayItem", Model[j])
+    }
+    @Html.Raw("</div>")
+}

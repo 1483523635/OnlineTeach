@@ -18,6 +18,7 @@ namespace OnlineTeach.Web.StartupExt
             var config = new MapperConfigurationExpression();
             config.CreateMap<TeacherApply, TeacherApplyViewModel>().ConstructUsing(c => new TeacherApplyViewModel() { Id = c.key });
             config.CreateMap<CourceItem, CourceItemCreateViewModel>();
+            config.CreateMap<CourceItem, CourceItemDisplayViewModel>();
             AutoMapper.Mapper.Initialize(config);
         }
     }
