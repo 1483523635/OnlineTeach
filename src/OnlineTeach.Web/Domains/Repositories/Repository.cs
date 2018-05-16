@@ -51,6 +51,11 @@ namespace OnlineTeach.Web.Domains.Repositories
             return _context.Set<TEntity>().Where(expression).ToList();
         }
 
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+        }
+
         public void Update(Tkey key, TEntity entity)
         {
             var entity_db = GetByKey(key);

@@ -16,5 +16,6 @@ namespace OnlineTeach.Web.Domains.Repositories
         IEnumerable<TModel> GetList();
         IEnumerable<TModel> GetList(Expression<Func<TModel, bool>> expression);
         void Delete(TKey key);
+        void SaveChanges();
     }
 }
