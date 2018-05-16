@@ -3,7 +3,7 @@
 # 所用技术
 
 * 用了DDD思想，并没有详细的分层。
-* 试着用了asp .ent core Identity
+* 试着用了asp .net core Identity
 
 # 运行说明
 * 用的内存数据库，没有持久化。
