@@ -6,6 +6,7 @@
     Layout = "~/Views/Cource/_Layout.cshtml";
     ViewData.SetActivePage(CourceNavPages.Create);
 }
+@Html.Partial("_StatusMessage",Model.StateMessage)
 
 <div class="row">
     <div class="col-md-4">

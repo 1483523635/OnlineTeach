@@ -34,5 +34,7 @@ namespace OnlineTeach.Web.Models.CourceViewModels
         [Display(Name = "售价")]
         [Required(ErrorMessage = "{0}不能为空")]
         public double Price { get; set; } = 100;
+
+        public string StateMessage { get; set; }
     }
 }
