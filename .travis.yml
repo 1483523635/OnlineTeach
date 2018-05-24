@@ -1,2 +1,7 @@
 language: csharp
 solution: OnlineTeach.sln
+dotnet: latest
+script:
+ - cd src/OnlineTeach.Web
+ - dotnet restore
+ - dotnet run 
