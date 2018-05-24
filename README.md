@@ -1,3 +1,5 @@
+Travis:   [![Travis](https://travis-ci.org/1483523635/OnlineTeach.svg?branch=master)](https://travis-ci.org/1483523635/OnlineTeach)
+
 # Information
 >    仿`学而思`做的一个在线教育网站
 # 所用技术
